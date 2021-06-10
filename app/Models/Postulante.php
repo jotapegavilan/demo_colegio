@@ -18,4 +18,10 @@ class Postulante extends Model
     public function curso(){
         return $this->belongsTo(Curso::class);
     }
+
+    //Relación 1 a 1 polimorfica
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imageable');
+    }
 }
