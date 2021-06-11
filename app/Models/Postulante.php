@@ -9,6 +9,9 @@ class Postulante extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['names','surnames','date_of_birth','status','user_id','curso_id'];
+
+
     //Relación 1 a muchos inversa
     public function user(){
         return $this->belongsTo(User::class);

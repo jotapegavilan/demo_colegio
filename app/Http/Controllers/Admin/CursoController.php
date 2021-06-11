@@ -44,7 +44,7 @@ class CursoController extends Controller
             'accepted' => 'required'
         ]);
         $curso = Curso::create($request->all());
-        return redirect()->route('admin.cursos.edit',$curso)->with('info','Curso se creó exitosamente');;
+        return redirect()->route('admin.cursos.edit',compact('curso'))->with('info','Curso se creó exitosamente');;
     }
 
     /**

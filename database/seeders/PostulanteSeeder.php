@@ -6,6 +6,7 @@ use App\Models\Image;
 use Illuminate\Database\Seeder;
 use App\Models\Postulante;
 
+
 class PostulanteSeeder extends Seeder
 {
     /**

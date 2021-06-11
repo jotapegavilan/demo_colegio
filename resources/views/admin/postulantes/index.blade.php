@@ -28,7 +28,18 @@
                             <td>{{$postulante->id}}</td>
                             <td>{{$postulante->names}}</td>
                             <td>{{$postulante->surnames}}</td>
-                            <td>{{$postulante->status}}</td>
+                            @switch($postulante->status)
+                                @case(0)
+                                    <td>Pendiente</td>
+                                    @break
+                                @case(1)
+                                    <td>Rechazado</td>
+                                    @break
+                                @case(2)
+                                <td>Aceptado</td>
+                                    @break
+                                @default                                    
+                            @endswitch                            
                             <td>{{$postulante->user->name}} {{$postulante->user->surnames}}</td>
                             <td width="10px"><a class="btn btn-primary btn-sm" href="{{route('admin.postulantes.edit',$postulante)}}">Editar</a></td>
                             <td width="10px">

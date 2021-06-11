@@ -7,7 +7,7 @@
                     <div class="flex-none lg:flex">
                         <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
                             <a href="{{route('postulantes.show',$postulante)}}">
-                                <img src="{{Storage::url($postulante->image->url)}}"
+                                <img src="@if($postulante->image){{Storage::url($postulante->image->url)}} @else https://cdn.pixabay.com/photo/2015/01/06/21/31/man-590855_960_720.jpg @endif"
                                 alt="Just a flower" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl">
                             </a>
                             
