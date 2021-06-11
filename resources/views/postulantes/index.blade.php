@@ -6,8 +6,11 @@
                 <div class="bg-white shadow-md  rounded-3xl p-4">
                     <div class="flex-none lg:flex">
                         <div class=" h-full w-full lg:h-48 lg:w-48   lg:mb-0 mb-3">
-                            <img src="{{Storage::url($postulante->image->url)}}"
+                            <a href="{{route('postulantes.show',$postulante)}}">
+                                <img src="{{Storage::url($postulante->image->url)}}"
                                 alt="Just a flower" class=" w-full  object-scale-down lg:object-cover  lg:h-48 rounded-2xl">
+                            </a>
+                            
                         </div>
                         <div class="flex-auto ml-3 justify-evenly py-2">
                             <div class="flex flex-wrap ">
@@ -39,7 +42,7 @@
                                     <button
                                         class="mb-2 md:mb-0 bg-white px-5 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
                                         @if ($postulante->status == 0)
-                                            <span class="text-blue-400 hover:text-green-500 rounded-lg">
+                                            <span class="text-blue-400 rounded-lg">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
@@ -47,14 +50,14 @@
                                             <span>Pendiente</span>
                                         @else
                                             @if ($postulante->status == 1)
-                                            <span class="text-red-400 hover:text-green-500 rounded-lg">
+                                            <span class="text-red-400 rounded-lg">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                                 </svg>
                                             </span>
                                                 <span>Rechazado</span>
                                             @else
-                                            <span class="text-green-400 hover:text-green-500 rounded-lg">
+                                            <span class="text-green-400 rounded-lg">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>

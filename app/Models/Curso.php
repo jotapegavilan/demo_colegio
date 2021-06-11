@@ -9,6 +9,7 @@ class Curso extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['number','letter','total_capacity','accepted'];
     
     //Relación 1 a muchos
     public function postulantes(){
