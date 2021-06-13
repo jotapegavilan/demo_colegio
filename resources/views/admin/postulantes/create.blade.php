@@ -17,9 +17,16 @@
                 @enderror
             </div>
             <div class="form-group">
-                {!! Form::label('surnames', 'Apellidos') !!}                   
-                {!! Form::text('surnames', null, ['class'=>'form-control', 'placeholder'=>'Ingrese los apellidos del postulante']) !!}
-                @error('surnames')
+                {!! Form::label('surname_1', 'Apellido paterno') !!}                   
+                {!! Form::text('surname_1', null, ['class'=>'form-control', 'placeholder'=>'Ingrese apellido paterno']) !!}
+                @error('surname_1')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                {!! Form::label('surname_2', 'Apellidos') !!}                   
+                {!! Form::text('surname_2', null, ['class'=>'form-control', 'placeholder'=>'Ingrese apellido materno']) !!}
+                @error('surname_"')
                     <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
@@ -54,6 +61,20 @@
                 {!! Form::label('user_id', 'Apoderado') !!}                   
                 {!! Form::select('user_id', $apoderados, null, ['class'=>'form-control']) !!}
                 @error('user_id')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                {!! Form::label('age_id', 'Año') !!}                   
+                {!! Form::select('age_id', $ages, null, ['class'=>'form-control']) !!}
+                @error('age_id')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                {!! Form::label('statu_id', 'Estado') !!}                   
+                {!! Form::select('statu_id', $status, null, ['class'=>'form-control']) !!}
+                @error('statu_id')
                     <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>

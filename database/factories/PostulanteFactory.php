@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Age;
 use App\Models\Curso;
 use App\Models\Postulante;
+use App\Models\Statu;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,10 +27,12 @@ class PostulanteFactory extends Factory
     {
         return [
             'names' => $this->faker->firstName(),
-            'surnames' => $this->faker->lastName,
-            'status' => $this->faker->numberBetween(0,2),
+            'surname_1' => $this->faker->lastName,     
+            'surname_2' => $this->faker->lastName,          
             'date_of_birth' => $this->faker->date(),
             'user_id' => User::all()->random()->id,
+            'statu_id' => Statu::all()->random()->id,
+            'age_id' => Age::all()->random()->id,
             'curso_id' => Curso::all()->random()->id
 
         ];

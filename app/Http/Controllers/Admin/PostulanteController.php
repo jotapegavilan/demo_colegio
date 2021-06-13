@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Age;
 use App\Models\Curso;
 use Illuminate\Http\Request;
 use App\Models\Postulante;
+use App\Models\Statu;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,8 +32,10 @@ class PostulanteController extends Controller
     public function create()
     {
         $apoderados = User::pluck('name','id');
-        $cursos = Curso::all()->pluck('name','id');
-        return view('admin.postulantes.create',compact('apoderados','cursos'));
+        $cursos = Curso::all()->pluck('full_name','id');
+        $ages = Age::all()->pluck('name','id');
+        $status = Statu::all()->pluck('text','id');
+        return view('admin.postulantes.create',compact('apoderados','cursos','ages','status'));
     }
 
     /**
@@ -45,7 +49,10 @@ class PostulanteController extends Controller
 
         $request->validate([
             'names' => 'required',
-            'surnames' => 'required',
+            'surname_1' => 'required',
+            'surname_2' => 'required',
+            'age_id' => 'required',
+            'statu_id' => 'required',
             'date_of_birth' => 'required',
             'user_id' => 'required',
             'curso_id' => 'required'
@@ -81,13 +88,10 @@ class PostulanteController extends Controller
     public function edit(Postulante $postulante)
     {
         $apoderados = User::pluck('name','id');
-        $cursos = Curso::all()->pluck('name','id');
-        $status = [
-            '0' => 'Pendiente',
-            '1' => 'Rechazado',
-            '2' => 'Aceptado'
-        ];
-        return view('admin.postulantes.edit',compact('postulante','apoderados','cursos','status'));
+        $cursos = Curso::all()->pluck('full_name','id');
+        $status = Statu::all()->pluck('text','id');
+        $ages = Age::all()->pluck('name','id');
+        return view('admin.postulantes.edit',compact('postulante','apoderados','cursos','status','ages'));
     }
 
     /**
@@ -101,7 +105,10 @@ class PostulanteController extends Controller
     {
         $request->validate([
             'names' => 'required',
-            'surnames' => 'required',
+            'surname_1' => 'required',
+            'surname_2' => 'required',
+            'age_id' => 'required',
+            'statu_id' => 'required',
             'date_of_birth' => 'required',
             'user_id' => 'required',
             'curso_id' => 'required'

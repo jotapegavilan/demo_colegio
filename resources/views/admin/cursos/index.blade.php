@@ -25,7 +25,7 @@
                     @foreach ($cursos as $curso)
                         <tr>
                             <td>{{$curso->id}}</td>
-                            <td>{{$curso->number}}-{{strtoupper($curso->letter)}}</td>
+                            <td>{{$curso->full_name}}</td>
                             <td>{{$curso->total_capacity}}</td>
                             <td>{{$curso->total_capacity - $curso->accepted}}</td>
                             <td width="10px"><a class="btn btn-primary btn-sm" href="{{route('admin.cursos.edit',$curso)}}">Editar</a></td>

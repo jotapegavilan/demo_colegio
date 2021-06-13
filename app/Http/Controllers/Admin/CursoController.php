@@ -39,7 +39,7 @@ class CursoController extends Controller
     {
         $request->validate([
             'number' => 'required',
-            'letter' => 'required',
+            'name' => 'required',
             'total_capacity' => 'required',
             'accepted' => 'required'
         ]);
@@ -80,7 +80,7 @@ class CursoController extends Controller
     {
         $request->validate([
             'number' => 'required',
-            'letter' => 'required',
+            'name' => 'required',
             'total_capacity' => 'required',
             'accepted' => 'required'
         ]);

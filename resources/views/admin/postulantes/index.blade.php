@@ -16,7 +16,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombres</th>
-                        <th>Apellidos</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Curso</th>
                         <th>Estado</th>
                         <th>Apoderado</th>
                         <th colspan="2">Acciones</th>
@@ -27,8 +29,10 @@
                         <tr>
                             <td>{{$postulante->id}}</td>
                             <td>{{$postulante->names}}</td>
-                            <td>{{$postulante->surnames}}</td>
-                            @switch($postulante->status)
+                            <td>{{$postulante->surname_1}}</td>
+                            <td>{{$postulante->surname_2}}</td>
+                            <td>{{$postulante->curso->full_name}}</td>
+                            @switch($postulante->statu->number)
                                 @case(0)
                                     <td>Pendiente</td>
                                     @break
@@ -37,6 +41,9 @@
                                     @break
                                 @case(2)
                                 <td>Aceptado</td>
+                                    @break
+                                    @case(3)
+                                <td>Matriculado</td>
                                     @break
                                 @default                                    
                             @endswitch                            

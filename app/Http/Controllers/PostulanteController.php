@@ -16,7 +16,7 @@ class PostulanteController extends Controller
 
     public function show(Postulante $postulante)
     {
-        $similares = Postulante::where('status',$postulante->status)
+        $similares = Postulante::where('statu_id',$postulante->statu->id)
         ->where('id','!=',$postulante->id)
         ->latest('id')
         ->take(4)

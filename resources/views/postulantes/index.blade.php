@@ -17,7 +17,7 @@
                                 <div class="w-full flex-none text-xs text-blue-700 font-medium ">
                                     Postulante
                                 </div>
-                                <h2 class="flex-auto text-lg font-medium">{{$postulante->names}} {{$postulante->surnames}}</h2>
+                                <h2 class="flex-auto text-lg font-medium">{{$postulante->full_name}}</h2>
                             </div>
                             <p class="mt-3"></p>
                             <div class="flex py-4  text-sm text-gray-600">
@@ -25,7 +25,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                                     </svg>
-                                    <p class="ml-3">{{$postulante->curso->number}}-{{strtoupper($postulante->curso->letter)}}</p>
+                                    <p class="ml-3">{{$postulante->curso->full_name}}</p>
                                 </div>
                                 <div class="flex-1 inline-flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
@@ -41,7 +41,7 @@
                                 <div class="flex-auto flex space-x-3">
                                     <button
                                         class="mb-2 md:mb-0 bg-white px-5 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
-                                        @if ($postulante->status == 0)
+                                        @if ($postulante->statu->number == 0)
                                             <span class="text-blue-400 rounded-lg">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -49,7 +49,7 @@
                                             </span>
                                             <span>Pendiente</span>
                                         @else
-                                            @if ($postulante->status == 1)
+                                            @if ($postulante->statu->number == 1)
                                             <span class="text-red-400 rounded-lg">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -57,12 +57,21 @@
                                             </span>
                                                 <span>Rechazado</span>
                                             @else
-                                            <span class="text-green-400 rounded-lg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </span>
-                                                <span>Aceptado</span>
+                                                @if ($postulante->statu->number==2)
+                                                <span class="text-green-400 rounded-lg">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </span>
+                                                    <span>Aceptado</span>
+                                                @else
+                                                <span class="text-green-400 rounded-lg">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </span>
+                                                    <span>Matriculado</span>
+                                                @endif
                                             @endif
                                         @endif                                       
                                         
