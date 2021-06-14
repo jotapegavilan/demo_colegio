@@ -20,6 +20,14 @@ class UserSeeder extends Seeder
             'phone_number' => '+56930532620',
             'email' => 'j.p.daniel.gavilan@gmail.com',
             'password' => bcrypt('12345678')
+        ])->assignRole('admin');
+
+        User::create([
+            'name' => 'Juan Pablo',
+            'surnames' => 'Gavilán Fuentealba',
+            'phone_number' => '+56930532620',
+            'email' => 'j.p.daniel.gavilan@gmail.cl',
+            'password' => bcrypt('12345678')
         ]);
 
         User::factory(99)->create();

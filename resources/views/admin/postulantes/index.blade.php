@@ -31,22 +31,12 @@
                             <td>{{$postulante->names}}</td>
                             <td>{{$postulante->surname_1}}</td>
                             <td>{{$postulante->surname_2}}</td>
-                            <td>{{$postulante->curso->full_name}}</td>
-                            @switch($postulante->statu->number)
-                                @case(0)
-                                    <td>Pendiente</td>
-                                    @break
-                                @case(1)
-                                    <td>Rechazado</td>
-                                    @break
-                                @case(2)
-                                <td>Aceptado</td>
-                                    @break
-                                    @case(3)
-                                <td>Matriculado</td>
-                                    @break
-                                @default                                    
-                            @endswitch                            
+                            @if ($postulante->curso)
+                                <td>{{$postulante->curso->full_name}}</td>
+                            @else
+                                <td>Sin asignar</td>
+                            @endif                           
+                                <td>{{$postulante->statu->text}}</td>                                                       
                             <td>{{$postulante->user->name}} {{$postulante->user->surnames}}</td>
                             <td width="10px"><a class="btn btn-primary btn-sm" href="{{route('admin.postulantes.edit',$postulante)}}">Editar</a></td>
                             <td width="10px">

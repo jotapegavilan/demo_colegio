@@ -239,40 +239,57 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'buscar',
+            'text' => 'Buscar',
         ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        ['header' => 'Administración'],
         [
             'text'        => 'Dashboard',
             'route'         => 'admin.index',
-            'icon'        => 'fas fa-tachometer-alt fa-fw',            
+            'icon'        => 'fas fa-tachometer-alt fa-fw', 
+            'can'         => 'admin.index',  
+        ],
+        [
+            'text'        => 'Usuarios',
+            'route'         => 'admin.users.index',
+            'icon'        => 'fas fa-users',  
+            'can'         => 'admin.users.index',            
+        ],
+        [
+            'text'        => 'Crear usuario',
+            'route'         => 'admin.users.create',
+            'icon'        => 'fas fa-user-plus',  
+            'can'         => 'admin.users.create',            
         ],
         [
             'text'        => 'Nuevos postulantes',
             'url'         => 'admin/pages',
             'icon'        => 'fas fa-user-plus',
-            'label'       => 4,
+            'label'       => 6,
             'label_color' => 'success',
-        ],
-        ['header' => 'Administración'],
+            'can'         => 'admin.postulantes.index',  
+        ],        
         [
             'text' => 'Cursos',
             'route'  => 'admin.cursos.index',
             'icon' => 'fas fa-tag',
+            'can'         => 'admin.cursos.index', 
         ],
         [
             'text' => 'Postulantes',
             'route'  => 'admin.postulantes.index',
             'icon' => 'fas fa-user-tag',
+            'can'         => 'admin.postulantes.index', 
         ],
         [
             'text' => 'Apoderados',
             'route'  => 'admin.apoderados.index',
             'icon' => 'fas fa-user',
+            'can'         => 'admin.apoderados.index', 
         ],
         [
             'text'    => 'multilevel',

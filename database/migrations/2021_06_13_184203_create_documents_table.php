@@ -16,7 +16,7 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->unsignedBigInteger('docuemntable_id');
+            $table->unsignedBigInteger('documentable_id');
             $table->string('ducumentable_type');
             $table->timestamps();
         });
