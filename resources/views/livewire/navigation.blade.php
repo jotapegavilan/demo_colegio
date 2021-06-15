@@ -88,7 +88,7 @@
                 @csrf
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                 this.closest('form').submit();" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">
-                  Sign out
+                  Cerrar sesión
                 </a>
               </form>
             </div>

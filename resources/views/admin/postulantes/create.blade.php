@@ -56,14 +56,22 @@
                 </div>
             </div>
             </div>
-            
+            @if (auth()->user()->roles)
+                @foreach (auth()->user()->roles as $role)
+                    @if ($role->name == "apoderado")
+                        {!! Form::hidden('user_id', auth()->user()->id) !!}
+                    @endif
+                @endforeach
+            @else
             <div class="form-group">
                 {!! Form::label('user_id', 'Apoderado') !!}                   
-                {!! Form::select('user_id', $apoderados, null, ['class'=>'form-control']) !!}
+                {!! Form::select('user_id', null, ['class'=>'form-control']) !!}
                 @error('user_id')
                     <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
+            @endif
+            
             <div class="form-group">
                 {!! Form::label('age_id', 'Año') !!}                   
                 {!! Form::select('age_id', $ages, null, ['class'=>'form-control']) !!}
@@ -71,6 +79,13 @@
                     <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
+            @if (auth()->user()->roles)
+                @foreach (auth()->user()->roles as $role)
+                    @if ($role->name == "apoderado")
+                        {!! Form::hidden('statu_id', '1') !!}
+                    @endif
+                @endforeach
+            @else
             <div class="form-group">
                 {!! Form::label('statu_id', 'Estado') !!}                   
                 {!! Form::select('statu_id', $status, null, ['class'=>'form-control']) !!}
@@ -78,6 +93,7 @@
                     <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>
+            @endif
             <div class="form-group">
                 {!! Form::label('curso_id', 'Curso') !!}                   
                 {!! Form::select('curso_id', $cursos, null, ['class'=>'form-control']) !!}

@@ -271,7 +271,7 @@ return [
             'icon'        => 'fas fa-user-plus',
             'label'       => 6,
             'label_color' => 'success',
-            'can'         => 'admin.postulantes.index',  
+            'can'         => 'admin.users.index',  
         ],        
         [
             'text' => 'Cursos',

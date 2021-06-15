@@ -42,7 +42,7 @@ class RoleSeeder extends Seeder
         $permission16 = Permission::create(['name' => 'admin.apoderados.edit']);
         $permission17 = Permission::create(['name' => 'admin.apoderados.delete']);
     
-        $permission1->syncRoles([$role1,$role2]);
+        $permission1->syncRoles([$role1,$role2,$role3]);
         $permission2->syncRoles([$role1,$role2]);
         $permission3->syncRoles([$role1,$role2]);
         $permission4->syncRoles([$role1,$role2]);

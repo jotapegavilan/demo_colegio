@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Postulante extends Model
 {
     use HasFactory;
 
     protected $fillable = ['names','surname_1','surname_2','date_of_birth','statu_id','age_id','user_id','curso_id'];
 
+    
 
     public function getFullNameAttribute()
     {
@@ -44,7 +46,7 @@ class Postulante extends Model
         return $this->morphOne(Image::class,'imageable');
     }
 
-    //Relación 1 a 1 polimorfica
+    //Relación 1 a muchos polimorfica
     public function documents()
     {
         return $this->morphToMany(Image::class,'documentable');

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Spatie\Permission\Models\Role;
 
 class ApoderadoController extends Controller
 {
+
+    protected $paginationTheme = "bootstrap";
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +18,9 @@ class ApoderadoController extends Controller
      */
     public function index()
     {
-        //
+        $apoderados = User::role('apoderado')->paginate(10);
+        return view('admin.apoderados.index',compact('apoderados'));
+       
     }
 
     /**
@@ -26,7 +30,7 @@ class ApoderadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.apoderados.create');
     }
 
     /**
@@ -37,7 +41,21 @@ class ApoderadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surnames' => 'required',            
+            'email' => 'required',            
+        ]);
+        $password = bcrypt($request->password);
+        $user = User::create([
+            'name' => $request->name,
+            'surnames' => $request->surnames,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'password'=>$password
+        ]);
+        $user->roles()->sync(Role::where('name',$request->rol)->get());
+        return redirect()->route('admin.apoderados.edit',$user)->with('info','Se creo el usuario');
     }
 
     /**
@@ -59,7 +77,7 @@ class ApoderadoController extends Controller
      */
     public function edit(User $apoderado)
     {
-        //
+        return view('admin.apoderados.edit',compact('apoderado'));
     }
 
     /**
@@ -71,7 +89,13 @@ class ApoderadoController extends Controller
      */
     public function update(Request $request, User $apoderado)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surnames' => 'required',            
+            'email' => 'required',            
+        ]);
+        $apoderado->update($request->all());
+        return redirect()->route('admin.apoderados.edit',compact('apoderado'))->with('info','Apoderado actualizado exitosamente');
     }
 
     /**
@@ -82,6 +106,7 @@ class ApoderadoController extends Controller
      */
     public function destroy(User $apoderado)
     {
-        //
+        $apoderado->delete();
+        return redirect()->route('admin.apoderados.index');
     }
 }

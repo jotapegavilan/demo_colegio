@@ -9,10 +9,28 @@ use Illuminate\Http\Request;
 use App\Models\Postulante;
 use App\Models\Statu;
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\Factory;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 class PostulanteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:admin.postulantes.index')->only('index');
+        $this->middleware('can:admin.postulantes.create')->only('create','store');
+        $this->middleware('can:admin.postulantes.edit')->only('edit','update');
+        $this->middleware('can:admin.postulantes.destroy')->only('destroy');
+    }
+
+    public function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +38,15 @@ class PostulanteController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        foreach ($user->roles as $rol) {            
+            if($rol->name == "apoderado"){
+                $postulantes = $user->postulantes;     
+                $postulantes = $this->paginate($postulantes);         
+                return view('admin.postulantes.index',compact('postulantes'));
+            }
+        }      
+        
         $postulantes = Postulante::paginate(25);
         return view('admin.postulantes.index',compact('postulantes'));
     }

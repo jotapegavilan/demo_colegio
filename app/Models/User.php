@@ -9,16 +9,18 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Ramsey\Uuid\Rfc4122\NilTrait;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use HasRoles;
+    use HasRoles;    
 
     /**
      * The attributes that are mass assignable.
@@ -67,4 +69,5 @@ class User extends Authenticatable
     public function postulantes(){
         return $this->hasMany(Postulante::class);
     }
+
 }
