@@ -12,8 +12,8 @@
                         <div class="card-header">
                             <h3>Bienvenid@ {{auth()->user()->name}} {{auth()->user()->surnames}}</h3>                        
                         </div>
-                        <div class="card-body">
-                            Tus credenciales nunca serán solicitadas por trabajadores
+                        <div class="card-body">                            
+                            <h4>Tus credenciales nunca serán solicitadas por trabajadores</h4>                            
                         </div>
                         <div class="card-footer">
                             terr@Vida
